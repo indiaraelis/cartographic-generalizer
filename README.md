@@ -149,6 +149,6 @@ Contribuições são bem-vindas! Abra issues ou pull requests no repositório.
 
 Baseado nos conceitos de generalização cartográfica:
 
+- DAL SANTO, M. A. Generalização cartográfica automatizada para um banco de dados cadastral. 2007. Tese (Doutorado em Engenharia Civil) - Programa de Pós-Graduação em Engenharia Civil, Universidade Federal de Santa Catarina, Florianópolis, 2007. Disponível em: http://repositorio.ufsc.br/xmlui/handle/123456789/89592
 - McMaster, R. B., & Shea, K. S. (1992). Generalization in Digital Cartography
 - Keates, J. S. (1989). Cartographic Design and Production
-- DAL SANTO, M. A. Generalização cartográfica automatizada para um banco de dados cadastral. 2007. Tese (Doutorado em Engenharia Civil) - Programa de Pós-Graduação em Engenharia Civil, Universidade Federal de Santa Catarina, Florianópolis, 2007. Disponível em: http://repositorio.ufsc.br/xmlui/handle/123456789/89592

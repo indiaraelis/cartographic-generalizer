@@ -24,3 +24,7 @@ Thumbs.db
 
 # ZIP
 *.zip
+
+# Documentation (local only)
+ARTIGO_COMPLETO.md
+ESTRUTURA_ARTIGO.md

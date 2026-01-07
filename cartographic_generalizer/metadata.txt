@@ -8,11 +8,11 @@ email=indiaraelis@gmail.com
 
 about=Plugin que implementa generalização cartográfica automática de feições lineares (curvas de nível, hidrografia) considerando mudança de escala. Calcula Índice de Generalização (Ig) e aplica operadores de simplificação e suavização baseados em teoria cartográfica.
 
-tracker=https://github.com/seu_usuario/cartographic-generalizer/issues
-repository=https://github.com/seu_usuario/cartographic-generalizer
+tracker=https://github.com/indiaraelis/cartographic-generalizer/issues
+repository=https://github.com/indiaraelis/cartographic-generalizer
 tags=cartography, generalization, scale, simplification, smoothing, line
 
-homepage=https://github.com/seu_usuario/cartographic-generalizer
+homepage=https://github.com/indiaraelis/cartographic-generalizer
 category=Vector
 icon=icon.png
 experimental=False
