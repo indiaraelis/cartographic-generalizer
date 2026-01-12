@@ -3,28 +3,28 @@ from qgis.core import QgsGeometry
 
 class Simplifier:
     """
-    Implementa algoritmo de simplificação Douglas-Peucker.
+    Implements Douglas-Peucker simplification algorithm.
     
-    Remove vértices desnecessários mantendo a forma essencial da linha.
+    Removes unnecessary vertices while maintaining essential line shape.
     """
     
     def simplify(self, geometry, tolerance):
         """
-        Simplifica geometria usando Douglas-Peucker.
+        Simplifies geometry using Douglas-Peucker.
         
         Args:
-            geometry: QgsGeometry a simplificar
-            tolerance: tolerância em unidades do mapa (metros normalmente)
+            geometry: QgsGeometry to simplify
+            tolerance: tolerance in map units (usually meters)
         
         Returns:
-            QgsGeometry: geometria simplificada
+            QgsGeometry: simplified geometry
         """
         if geometry.isNull() or geometry.isEmpty():
             return geometry
         
         simplified = geometry.simplify(tolerance)
         
-        # Valida resultado
+        # Validate result
         if simplified.isNull() or simplified.isEmpty():
             return geometry
         
@@ -32,16 +32,16 @@ class Simplifier:
 
     def adaptive_simplify(self, geometry, ig):
         """
-        Simplifica usando tolerância adaptativa baseada em Ig.
+        Simplifies using adaptive tolerance based on Ig.
         
-        Tolerância = Ig * fator_base
+        Tolerance = Ig * base_factor
         
         Args:
-            geometry: QgsGeometry a simplificar
-            ig: Índice de Generalização
+            geometry: QgsGeometry to simplify
+            ig: Generalization Index
         
         Returns:
-            QgsGeometry: geometria simplificada
+            QgsGeometry: simplified geometry
         """
         BASE_FACTOR = 10.0
         tolerance = ig * BASE_FACTOR

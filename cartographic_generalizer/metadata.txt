@@ -1,19 +1,29 @@
 [general]
 name=Cartographic Generalizer
 qgisMinimumVersion=3.0
-description=Plugin para generalização cartográfica de feições lineares baseado em mudança de escala
+description=QGIS plugin for cartographic generalization of linear features based on scale change
 version=1.0.0
 author=Indiara Elis
 email=indiaraelis@gmail.com
 
-about=Plugin que implementa generalização cartográfica automática de feições lineares (curvas de nível, hidrografia) considerando mudança de escala. Calcula Índice de Generalização (Ig) e aplica operadores de simplificação e suavização baseados em teoria cartográfica.
+about=Plugin that implements automatic cartographic generalization of linear features (contour lines, hydrography) considering scale change. Calculates Generalization Index (Ig) and applies simplification and smoothing operators based on cartographic theory.
 
 tracker=https://github.com/indiaraelis/cartographic-generalizer/issues
 repository=https://github.com/indiaraelis/cartographic-generalizer
 tags=cartography, generalization, scale, simplification, smoothing, line
 
 homepage=https://github.com/indiaraelis/cartographic-generalizer
+license=GPL-3.0-or-later
 category=Vector
 icon=icon.png
 experimental=False
 deprecated=False
+
+changelog=1.0.0
+    - Initial release
+    - Generalization Index (Ig) calculation based on scale change
+    - Douglas-Peucker simplification operator
+    - Chaikin smoothing operator
+    - Single-window interface with manual parameter control
+    - Automatic tolerance suggestion based on Ig
+    - Support for LineString and MultiLineString geometries

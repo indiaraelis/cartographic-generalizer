@@ -3,29 +3,29 @@ from qgis.core import QgsGeometry
 
 class Smoother:
     """
-    Implementa algoritmo de suavização Chaikin.
+    Implements Chaikin smoothing algorithm.
     
-    Reduz ângulos agudos nos segmentos de linha mantendo forma geral.
+    Reduces sharp angles in line segments while maintaining general shape.
     """
     
     def smooth(self, geometry, iterations=3, offset=0.25):
         """
-        Suaviza geometria usando algoritmo Chaikin.
+        Smooths geometry using Chaikin algorithm.
         
         Args:
-            geometry: QgsGeometry a suavizar
-            iterations: número de iterações (quanto maior, mais suave)
-            offset: deslocamento dos pontos (0.25 = padrão Chaikin)
+            geometry: QgsGeometry to smooth
+            iterations: number of iterations (higher = smoother)
+            offset: point displacement (0.25 = classic Chaikin)
         
         Returns:
-            QgsGeometry: geometria suavizada
+            QgsGeometry: smoothed geometry
         """
         if geometry.isNull() or geometry.isEmpty():
             return geometry
         
         smoothed = geometry.smooth(iterations, offset)
         
-        # Valida resultado
+        # Validate result
         if smoothed.isNull() or smoothed.isEmpty():
             return geometry
         
@@ -33,26 +33,26 @@ class Smoother:
 
     def conservative_smooth(self, geometry, max_iterations=2):
         """
-        Aplica suavização conservadora (menos agressiva).
+        Applies conservative smoothing (less aggressive).
         
         Args:
-            geometry: QgsGeometry a suavizar
-            max_iterations: número máximo de iterações
+            geometry: QgsGeometry to smooth
+            max_iterations: maximum number of iterations
         
         Returns:
-            QgsGeometry: geometria suavizada
+            QgsGeometry: smoothed geometry
         """
         return self.smooth(geometry, iterations=max_iterations, offset=0.2)
 
     def aggressive_smooth(self, geometry, max_iterations=5):
         """
-        Aplica suavização agressiva (mais suave).
+        Applies aggressive smoothing (smoother result).
         
         Args:
-            geometry: QgsGeometry a suavizar
-            max_iterations: número máximo de iterações
+            geometry: QgsGeometry to smooth
+            max_iterations: maximum number of iterations
         
         Returns:
-            QgsGeometry: geometria suavizada
+            QgsGeometry: smoothed geometry
         """
         return self.smooth(geometry, iterations=max_iterations, offset=0.3)

@@ -17,53 +17,53 @@ class GeneralizationCalculator:
 
     def calculate_ig(self, scale_origin, scale_target):
         """
-        Calcula o Índice de Generalização (Ig) baseado na mudança de escala.
+        Calculates the Generalization Index (Ig) based on scale change.
         
-        Fórmula: Ig = Do/Dg (conforme Dal Santo, 2007)
-        Onde Do = denominador escala origem, Dg = denominador escala destino
+        Formula: Ig = Do/Dg (according to Dal Santo, 2007)
+        Where Do = origin scale denominator, Dg = target scale denominator
         
-        Exemplo: 1:5.000 -> 1:25.000 resulta em Ig = 5000/25000 = 0.2
+        Example: 1:5,000 -> 1:25,000 results in Ig = 5000/25000 = 0.2
         
-        Interpretação: Ig < 1 indica generalização necessária.
-        Quanto menor o Ig, maior a generalização.
+        Interpretation: Ig < 1 indicates generalization is needed.
+        Lower Ig means more generalization.
         
         Args:
-            scale_origin: Denominador da escala de origem (ex: 5000)
-            scale_target: Denominador da escala de destino (ex: 25000)
+            scale_origin: Origin scale denominator (e.g., 5000)
+            scale_target: Target scale denominator (e.g., 25000)
         
         Returns:
-            float: Índice de Generalização (0 < Ig < 1 para generalização)
+            float: Generalization Index (0 < Ig < 1 for generalization)
         
         References:
             Dal Santo, M.A. (2007). Generalização cartográfica automatizada 
-            para um banco de dados cadastral. Tese (Doutorado) - UFSC.
+            para um banco de dados cadastral. PhD Thesis - UFSC.
         """
         if scale_origin <= 0 or scale_target <= 0:
-            raise ValueError("Escalas devem ser maiores que zero")
+            raise ValueError("Scales must be greater than zero")
         
         if scale_target <= scale_origin:
-            raise ValueError("Escala de destino deve ser menor que origem (denominador maior)")
+            raise ValueError("Target scale must be smaller than origin (larger denominator)")
         
-        # Fórmula correta conforme tese: Ig = Do/Dg
+        # Correct formula according to thesis: Ig = Do/Dg
         ig = scale_origin / scale_target
         return ig
 
     def generalize_layer(self, input_layer, params, output_name):
         """
-        Aplica generalização cartográfica em uma camada.
+        Applies cartographic generalization to a layer.
         
         Args:
-            input_layer: QgsVectorLayer de entrada
-            params: dict com parâmetros de generalização
-            output_name: nome da camada de saída
+            input_layer: Input QgsVectorLayer
+            params: dict with generalization parameters
+            output_name: output layer name
         
         Returns:
-            QgsVectorLayer: camada generalizada ou None se erro
+            QgsVectorLayer: generalized layer or None if error
         """
         if not input_layer or not input_layer.isValid():
             return None
         
-        # Cria camada de saída
+        # Create output layer
         output_layer = QgsVectorLayer(
             f"{QgsWkbTypes.displayString(input_layer.wkbType())}?crs={input_layer.crs().authid()}",
             output_name,
@@ -72,11 +72,11 @@ class GeneralizationCalculator:
         
         provider = output_layer.dataProvider()
         
-        # Copia campos
+        # Copy fields
         provider.addAttributes(input_layer.fields())
         output_layer.updateFields()
         
-        # Processa cada feição
+        # Process each feature
         features = input_layer.getFeatures()
         generalized_features = []
         
@@ -86,24 +86,24 @@ class GeneralizationCalculator:
             if geom.isNull() or geom.isEmpty():
                 continue
             
-            # Aplica simplificação
+            # Apply simplification
             if params.get('simplify', False):
                 tolerance = params.get('tolerance', 10.0)
                 geom = self.simplifier.simplify(geom, tolerance)
             
-            # Aplica suavização
+            # Apply smoothing
             if params.get('smooth', False):
                 iterations = params.get('iterations', 3)
                 offset = params.get('offset', 0.25)
                 geom = self.smoother.smooth(geom, iterations, offset)
             
-            # Cria nova feição
+            # Create new feature
             new_feature = QgsFeature()
             new_feature.setGeometry(geom)
             new_feature.setAttributes(feature.attributes())
             generalized_features.append(new_feature)
         
-        # Adiciona feições generalizadas
+        # Add generalized features
         provider.addFeatures(generalized_features)
         output_layer.updateExtents()
         
@@ -111,12 +111,12 @@ class GeneralizationCalculator:
 
     def calculate_sinuosity(self, geometry):
         """
-        Calcula a sinuosidade de uma linha.
+        Calculates the sinuosity of a line.
         
-        Sinuosidade = comprimento_real / distância_euclidiana
+        Sinuosity = real_length / euclidean_distance
         
         Args:
-            geometry: QgsGeometry de linha
+            geometry: Line QgsGeometry
         
         Returns:
             float: índice de sinuosidade (1.0 = linha reta)
