@@ -2,7 +2,7 @@
 name=Cartographic Generalizer
 qgisMinimumVersion=3.0
 description=QGIS plugin for cartographic generalization of linear features based on scale change
-version=1.0.0
+version=1.0.1
 author=Indiara Elis
 email=indiaraelis@gmail.com
 
@@ -19,7 +19,12 @@ icon=icon.png
 experimental=False
 deprecated=False
 
-changelog=1.0.0
+changelog=1.0.1
+    - Refactor and translate plugin interface and documentation to English
+    - Add proper README.md with complete documentation
+    - Translate all code comments to English
+    - Update metadata with license field
+    1.0.0
     - Initial release
     - Generalization Index (Ig) calculation based on scale change
     - Douglas-Peucker simplification operator
